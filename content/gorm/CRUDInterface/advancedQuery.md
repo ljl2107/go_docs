@@ -233,13 +233,13 @@ Get first matched record or create a new one with given conditions (only works w
 ​	获取第一个匹配的记录或根据给定条件创建一个新的记录（仅适用于结构体、映射条件），`RowsAffected` 返回创建/更新记录的数量
 
 ``` go
-// User not found, create a new record with give conditions
+// 用户未找到，根据给定条件创建一个新记录 User not found, create a new record with give conditions
 result := db.FirstOrCreate(&user, User{Name: "non_existing"})
 // INSERT INTO "users" (name) VALUES ("non_existing");
 // user -> User{ID: 112, Name: "non_existing"}
 // result.RowsAffected // => 1
 
-// Found user with `name` = `jinzhu`
+// 查找名为`jinzhu`的用户 Found user with `name` = `jinzhu`
 result := db.Where(User{Name: "jinzhu"}).FirstOrCreate(&user)
 // user -> User{ID: 111, Name: "jinzhu", "Age": 18}
 // result.RowsAffected // => 0
